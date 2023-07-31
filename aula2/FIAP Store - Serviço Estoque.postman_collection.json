@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "91bc23b5-86d0-4289-ad58-02582aa6d042",
+		"name": "FIAP Store - Serviço Estoque",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4104440"
+	},
+	"item": [
+		{
+			"name": "Obter Estoque",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/estoque/{{sku}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"estoque",
+						"{{sku}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reservar Estoque",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"operacoes\": [\n        {\n            \"sku\": \"{{sku}}\",\n            \"quantidade\": 1\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/estoque/reserva",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"estoque",
+						"reserva"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Debitar Estoque",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"operacoes\": [\n        {\n            \"sku\": \"{{sku}}\",\n            \"quantidade\": 1\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/estoque/debito",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"estoque",
+						"debito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Registro de Estoque",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sku\": \"{{sku}}\",\n    \"em_estoque\": 10,\n    \"reservado\": 0\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/estoque",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"estoque"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Registro de Estoque",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sku\": \"{{sku}}\",\n    \"em_estoque\": 1,\n    \"reservado\": 0\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/estoque/{{sku}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"estoque",
+						"{{sku}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

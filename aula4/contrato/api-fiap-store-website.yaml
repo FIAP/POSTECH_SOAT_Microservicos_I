@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: API FIAP Store - Website
+  description: |-
+    API destinada para uso pela aplicação cliente fiapstore.com.br
+  termsOfService: https://fiapstore.com.br/termos-de-uso/
+  contact:
+    email: squad-website@fiapstore.com.br
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: https://docs.api.fiapstore.com.br/
+servers:
+  - url: http://localhost:8000
+tags:
+  - name: estoque
+    description: Endpoints relacionados com estoque
+
+paths:
+  /estoque:
+    post:
+      tags:
+        - estoque
+      summary: Cria estoque de um novo produto
+      description: Permite adicionarmos o registro de estoque de um novo produto
+      operationId: criaEstoque
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoEstoque'
+        required: true
+      responses:
+        '200':
+          description: Registro de estoque adicionado com sucesso
+        '400':
+          description: Erro ao registrar estoque do produto
+        '401':
+          description: Credencial inválida
+        '422':
+          description: Parâmetros incompletos
+components:
+  schemas:
+    NovoEstoque:
+      type: object
+      properties:
+        sku:
+          type: string
+        em_estoque:
+          type: integer
+        reservado:
+          type: integer
+          default: 0
+      example:
+        sku: "123"
+        em_estoque: 10
+        reservado: 0
+        
+  securitySchemes:
+    website_auth:
+      type: http
+      scheme: basic
+security:
+  - website_auth: [] 
+  
