@@ -1,0 +1,432 @@
+{
+	"info": {
+		"_postman_id": "f81914e7-bbe0-4b54-9c2f-2f42adabf454",
+		"name": "FIAP Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4104440"
+	},
+	"item": [
+		{
+			"name": "Estoque",
+			"item": [
+				{
+					"name": "Criar Estoque",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"{{sku}}\",\n    \"em_estoque\": 20,\n    \"reservado\": 0\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}:{{estoquePort}}/estoque",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{estoquePort}}",
+							"path": [
+								"estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Estoque",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:{{estoquePort}}/estoque/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{estoquePort}}",
+							"path": [
+								"estoque",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Estoque",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"{{sku}}\",\n    \"em_estoque\": 6,\n    \"reservado\": 2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}:{{estoquePort}}/estoque/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{estoquePort}}",
+							"path": [
+								"estoque",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Estoque",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:{{estoquePort}}/estoque/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{estoquePort}}",
+							"path": [
+								"estoque",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reservar Estoque",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"operacoes\": [\n        {\n            \"sku\": \"{{sku}}\",\n            \"quantidade\": 1\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}:{{estoquePort}}/estoque/reserva",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{estoquePort}}",
+							"path": [
+								"estoque",
+								"reserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debitar Estoque",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"operacoes\": [\n        {\n            \"sku\": \"{{sku}}\",\n            \"quantidade\": 1\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}:{{estoquePort}}/estoque/debito",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{estoquePort}}",
+							"path": [
+								"estoque",
+								"debito"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Precificação",
+			"item": [
+				{
+					"name": "Criar Preço",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"{{sku}}\",\n    \"preco\": 12.5\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}:{{precificacaoPort}}/preco",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{precificacaoPort}}",
+							"path": [
+								"preco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Preço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:{{precificacaoPort}}/preco/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{precificacaoPort}}",
+							"path": [
+								"preco",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Preço",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"{{sku}}\",\n    \"preco\": 1.0\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}:{{precificacaoPort}}/preco/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{precificacaoPort}}",
+							"path": [
+								"preco",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Preço",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:{{precificacaoPort}}/preco/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{precificacaoPort}}",
+							"path": [
+								"preco",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Catálogo",
+			"item": [
+				{
+					"name": "Criar Produto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"{{sku}}\",\n    \"nome\": \"Lâmpada 9W LED\",\n    \"descr\": \"Lâmpada 9W LED com soquete E27 ...\",\n    \"urlImagem\": \"https://imagens.fiapstore.com.br/produto/{{sku}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}:{{catalogoPort}}/produto",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{catalogoPort}}",
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:{{catalogoPort}}/produto/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{catalogoPort}}",
+							"path": [
+								"produto",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"{{sku}}\",\n    \"nome\": \"Lâmpada 12W LED\",\n    \"descr\": \"Lâmpada 12W LED com soquete E27 ...\",\n    \"urlImagem\": \"https://imagens.fiapstore.com.br/produto/{{sku}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}:{{catalogoPort}}/produto/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{catalogoPort}}",
+							"path": [
+								"produto",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:{{catalogoPort}}/produto/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{catalogoPort}}",
+							"path": [
+								"produto",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Busca Produto",
+			"item": [
+				{
+					"name": "Obter Produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:{{buscaProdutoPort}}/produto/{{sku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{buscaProdutoPort}}",
+							"path": [
+								"produto",
+								"{{sku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:{{buscaProdutoPort}}/produto?sku={{sku}}&nome=lampada&descr=LED",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{buscaProdutoPort}}",
+							"path": [
+								"produto"
+							],
+							"query": [
+								{
+									"key": "sku",
+									"value": "{{sku}}"
+								},
+								{
+									"key": "nome",
+									"value": "lampada"
+								},
+								{
+									"key": "descr",
+									"value": "LED"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
