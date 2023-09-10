@@ -17,16 +17,13 @@ class SQSAdapter(ProdutoEventPublisher):
             response = self.__sqs.get_queue_url(QueueName=self.__queue_name)
             return response['QueueUrl']
         except Exception as e:
-            print(f"Error ao obter fila SQS: {e}")
-            return None
-        
-    def publicar(self, produto: Produto):
-        queue_url = self.__get_queue_url()
-        if queue_url is None:
             raise SqsException({
                 "code": "sqs.error.queue.unavailable",
-                "message": "Fila SQS não encontrada",
-            })        
+                "message": f"Fila SQS não encontrada {e}",
+            })
+        
+    def publicar(self, produto: Produto):
+        queue_url = self.__get_queue_url()     
         try:
             self.__sqs.send_message(QueueUrl=queue_url, MessageBody=produto.json())
         except Exception as e:
