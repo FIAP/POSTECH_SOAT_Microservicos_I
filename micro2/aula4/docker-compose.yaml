@@ -1,0 +1,54 @@
+version: '3.9'
+
+volumes:
+  db_servicos_data:
+  localstack_data:
+networks:
+  fiap-store:
+    external: false
+
+services:
+  localstack:
+    image: localstack/localstack:2.2.0
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - DEBUG=${DEBUG-}
+      - LOCALSTACK_PERSISTENCE=1
+    volumes:
+      - "localstack_data:/var/lib/localstack"
+    networks:
+      - fiap-store
+
+  test-db-catalogo:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
+    networks:
+      - fiap-store
+
+  test-catalogo:
+    build:
+      context: catalogo/
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./catalogo:/app
+      - ./reports:/reports
+    networks:
+      - fiap-store
+
+  test-pedido:
+    build:
+      context: pedido/
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./pedido/test/integration/contracts:/app/test/integration/contracts
+    networks:
+      - fiap-store

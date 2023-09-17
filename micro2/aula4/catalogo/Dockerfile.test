@@ -1,0 +1,23 @@
+FROM python:3.9-slim-buster
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /app
+
+# Instala as dependências do projeto
+
+RUN apt update && apt install -y inotify-tools
+RUN pip install pytest pytest-cov pytest-watch
+COPY requirements.test.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . /app/
+COPY main.py /app/main.py
+
+# Expõe a porta 8080
+EXPOSE 8080
+
+# Inicia os testes
+# CMD [ "python", "-m", "pytest", "-v", "--cov=adapter", "--cov=domain", "--cov=port", "--cov-report", "xml:/reports/coverage.xml" ]
+CMD [ "python", "-m", "pytest", "-v", "--cov=adapter", "--cov=domain", "--cov=port", "--cov-report", "html:/reports/" ]
