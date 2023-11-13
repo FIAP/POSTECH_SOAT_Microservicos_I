@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: busca-produto
+spec:
+  hosts:
+    - busca-produto
+  http:
+    - route:
+        - destination:
+            host: busca-produto
+            port:
+              number: 8080

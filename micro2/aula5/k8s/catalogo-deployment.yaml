@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogo
+spec:
+  selector:
+    matchLabels:
+      app: catalogo
+  template:
+    metadata:
+      labels:
+        app: catalogo
+    spec:
+      containers:
+      - name: catalogo
+        image: catalogo:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080

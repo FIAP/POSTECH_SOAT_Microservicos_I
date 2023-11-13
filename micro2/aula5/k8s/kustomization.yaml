@@ -1,0 +1,24 @@
+resources:
+  - mysql-deployment.yaml
+  - mysql-service.yaml
+  - mysql-pvc.yaml
+  - estoque-deployment.yaml
+  - estoque-service.yaml
+  - precificacao-deployment.yaml
+  - precificacao-service.yaml
+  - catalogo-deployment.yaml
+  - catalogo-service.yaml
+  - busca-produto-deployment.yaml
+  - busca-produto-service.yaml
+  - catalogo-virtualservice.yaml
+  - estoque-virtualservice.yaml
+  - precificacao-virtualservice.yaml
+  - busca-produto-virtualservice.yaml
+  - fiap-store-gateway.yaml
+  - fiap-store-virtualservice.yaml
+configMapGenerator:
+- name: migrations-configmap
+  files:
+  - migrations/01_create_databases.sql
+  - migrations/02_create_users.sql
+  - migrations/03_create_busca_produto.sql

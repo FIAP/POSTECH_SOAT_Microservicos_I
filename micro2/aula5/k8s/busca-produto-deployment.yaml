@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busca-produto
+spec:
+  selector:
+    matchLabels:
+      app: busca-produto
+  template:
+    metadata:
+      labels:
+        app: busca-produto
+    spec:
+      containers:
+      - name: busca-produto
+        image: busca-produto:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080

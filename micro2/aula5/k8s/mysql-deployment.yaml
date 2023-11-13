@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-servicos
+spec:
+  selector:
+    matchLabels:
+      app: db-servicos
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: db-servicos
+    spec:
+      containers:
+      - image: mysql:8.0
+        name: mysql
+        args: ["--default-authentication-plugin=mysql_native_password"]
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root_password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: db-servicos-data
+          mountPath: /var/lib/mysql
+        - name: migrations
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: db-servicos-data
+        persistentVolumeClaim:
+          claimName: db-servicos-data-pvc
+      - name: migrations
+        configMap:
+          name: migrations-configmap

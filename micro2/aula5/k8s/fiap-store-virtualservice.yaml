@@ -1,0 +1,50 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: fiap-store
+spec:
+  hosts:
+  - "*" 
+  gateways:
+  - fiap-store
+  http:
+  - match:
+    - uri:
+        prefix: "/busca-produto/"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: busca-produto
+        port:
+          number: 8080
+  - match:
+    - uri:
+        prefix: "/catalogo/"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: catalogo
+        port:
+          number: 8080
+  - match:
+    - uri:
+        prefix: "/estoque/"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: estoque
+        port:
+          number: 8080
+  - match:
+    - uri:
+        prefix: "/precificacao/"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: precificacao
+        port:
+          number: 8080

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: precificacao
+spec:
+  selector:
+    matchLabels:
+      app: precificacao
+  template:
+    metadata:
+      labels:
+        app: precificacao
+    spec:
+      containers:
+      - name: precificacao
+        image: precificacao:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080

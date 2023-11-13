@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: estoque
+spec:
+  selector:
+    matchLabels:
+      app: estoque
+  template:
+    metadata:
+      labels:
+        app: estoque
+    spec:
+      containers:
+      - name: estoque
+        image: estoque:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+
